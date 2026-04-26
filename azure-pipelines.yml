@@ -1,0 +1,21 @@
+trigger:
+- main
+
+pool:
+  name: wsl-agent
+
+steps:
+
+- script: |
+    docker build -t flask-app .
+  displayName: 'Build Docker Image'
+
+- script: |
+    docker rm -f flask-container || true
+    docker run -d -p 5000:5000 --name flask-container flask-app
+  displayName: 'Run Docker Container'
+
+- script: |
+    docker ps
+    echo "Application deployed successfully 🚀"
+  displayName: 'Verify Container Running'
