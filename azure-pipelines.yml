@@ -2,7 +2,7 @@ trigger:
 - main
 
 pool:
-  name: Local-Agent-Pool
+  name: wsl-agent
 
 steps:
 
